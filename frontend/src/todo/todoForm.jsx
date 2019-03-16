@@ -55,6 +55,6 @@ const mapStateToProps = state => ({
     list: state.todo.list
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ changeDescription, search, add }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ changeDescription, search, add}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoForm)
