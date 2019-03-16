@@ -5,7 +5,7 @@ const URL = 'http://localhost:3003/api/todos'
 export const changeDescription = event => ({
     type: 'DESCRIPTION_CHANGED',
     payload: event.target.value
-}) 
+})
 
 export const search = () => {
     const request = axios.get(`${URL}?sort=-createdAt`)
@@ -15,4 +15,15 @@ export const search = () => {
         payload: request
     }
 }
+
+export const add = description => {
+    // com redux-thunk não preciso retorna mais uma action, mas uma função que recebe um dispatch
+    return dispatch => {
+        axios.post(URL, { description })
+            .then(resp => dispatch({ type: 'TODO_ADDED', payload: resp.data }))
+            .then(resp => dispatch(search()))
+    }
+}
+
+
 
